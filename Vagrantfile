@@ -28,6 +28,7 @@ Vagrant.configure("2") do |config|
   config.hostmanager.manage_host = true
   config.hostmanager.ignore_private_ip = false
   config.hostmanager.include_offline = true
+  config.ssh.insert_key = false
 
   config.vm.provision "shell",
     inline: "hostname --fqdn > /etc/hostname && hostname -F /etc/hostname"
@@ -46,7 +47,7 @@ Vagrant.configure("2") do |config|
 
   config.vm.define "node1" do |node1|
     node1.vm.hostname="node1.example.com"
-    node1.vm.provision :shell, :path => "setup.sh", :args => "node"
+    node1.vm.provision :shell, :path => "setup.sh"
     node1.vm.network :private_network,
       :ip => "192.168.156.6",
       :libvirt__netmask => "255.255.255.0",
@@ -62,7 +63,7 @@ Vagrant.configure("2") do |config|
 
   config.vm.define "node2" do |node2|
     node2.vm.hostname="node2.example.com"
-    node2.vm.provision :shell, :path => "setup.sh", :args => "node"
+    node2.vm.provision :shell, :path => "setup.sh"
     node2.vm.network :private_network,
       :ip => "192.168.156.7",
       :libvirt__netmask => "255.255.255.0",
