@@ -30,7 +30,9 @@ if [ $1 == "master" ]; then
   git clone https://www.github.com/openshift/openshift-ansible.git; cd openshift-ansible
   cp /vagrant/hosts /etc/ansible/hosts
   ansible-playbook playbooks/byo/config.yml
-  htpasswd -cb /etc/origin/master/htpasswd fusor dog8code
+  htpasswd -cb /etc/origin/master/htpasswd ansibleapp changeme
+  htpasswd -cb /etc/origin/master/htpasswd admin admin
+  oadm policy add-cluster-role-to-user cluster-admin admin
   oadm manage-node master.example.com --schedulable
   oc label node master.example.com region=infra --overwrite
 fi
