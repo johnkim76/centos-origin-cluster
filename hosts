@@ -8,8 +8,7 @@ nodes
 # Set variables common for all OSEv3 hosts
 [OSEv3:vars]
 ansible_ssh_user=root
-deployment_type=openshift-enterprise
-openshift_release=v3.4
+deployment_type=origin
 
 # Uncomment the following to enable htpasswd authentication; defaults to
 # DenyAllPasswordIdentityProvider.
