@@ -1,15 +1,5 @@
 #!/bin/sh --login
 
-if [ ! -f /etc/yum.repos.d/rhel7_3beta.repo ]; then
-cat << EOF > /etc/yum.repos.d/rhel7_3beta.repo
-[rhel7.3Beta]
-name=RHEL7.3Beta
-baseurl=http://download.devel.redhat.com/rel-eng/RHEL-7.3-RC-3.0/compose/Server/x86_64/os/
-enabled=1
-gpgcheck=0
-sslverify=0
-EOF
-fi
 yum -y install epel-release
 yum -y install deltarpm wget git net-tools bind-utils bridge-utils gcc docker vim ansible
 
@@ -40,7 +30,7 @@ if [ $1 == "master" ]; then
   git clone https://www.github.com/openshift/openshift-ansible.git; cd openshift-ansible
   cp /vagrant/hosts /etc/ansible/hosts
   ansible-playbook playbooks/byo/config.yml
-#  wget https://github.com/openshift/origin/releases/download/v1.5.0-alpha.3/openshift-origin-server-v1.5.0-alpha.3-cf7e336-linux-64bit.tar.gz -O /tmp/origin.tar.gz
-#  tar -xzf /tmp/origin.tar.gz -C /tmp
-#  mv /tmp/openshift-origin-server-v1.5.0-alpha.3-cf7e336-linux-64bit/openshift /usr/local/bin
+  htpasswd -cb /etc/origin/master/htpasswd fusor dog8code
+  oadm manage-node master.example.com --schedulable
+  oc label node master.example.com region=infra --overwrite
 fi
