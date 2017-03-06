@@ -34,5 +34,6 @@ if [ $1 == "master" ]; then
   htpasswd -cb /etc/origin/master/htpasswd admin admin
   oadm policy add-cluster-role-to-user cluster-admin admin
   oadm manage-node master.example.com --schedulable
+  oadm policy add-scc-to-user privileged admin
   oc label node master.example.com region=infra --overwrite
 fi
