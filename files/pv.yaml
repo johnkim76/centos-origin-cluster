@@ -1,0 +1,56 @@
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv1
+spec:
+  accessModes:
+  - ReadWriteMany
+  - ReadWriteOnce
+  capacity:
+    storage: 10Gi
+  hostPath:
+    path: /var/pv/1
+  persistentVolumeReclaimPolicy: Retain
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv2
+spec:
+  accessModes:
+  - ReadWriteMany
+  - ReadWriteOnce
+  capacity:
+    storage: 10Gi
+  hostPath:
+    path: /var/pv/2
+  persistentVolumeReclaimPolicy: Retain
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv3
+spec:
+  accessModes:
+  - ReadWriteMany
+  - ReadWriteOnce
+  capacity:
+    storage: 10Gi
+  hostPath:
+    path: /var/pv/3
+  persistentVolumeReclaimPolicy: Retain
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv4
+spec:
+  accessModes:
+  - ReadWriteMany
+  - ReadWriteOnce
+  capacity:
+    storage: 10Gi
+  hostPath:
+    path: /var/pv/4
+  persistentVolumeReclaimPolicy: Retain
