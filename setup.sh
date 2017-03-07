@@ -33,6 +33,13 @@ if [ $1 == "master" ]; then
   htpasswd -cb /etc/origin/master/htpasswd ansibleapp changeme
   htpasswd -cb /etc/origin/master/htpasswd admin admin
   oadm policy add-cluster-role-to-user cluster-admin admin
+  oadm policy add-scc-to-user privileged admin
+  oadm policy add-scc-to-group anyuid system:authenticated
   oadm manage-node master.example.com --schedulable
   oc label node master.example.com region=infra --overwrite
+  oc login -u admin -p admin
+  oc create -f /vagrant/files/pv.yaml
+else
+  mkdir -p /var/pv/{1,2,3,4}
+  chmod 777 /var/pv/{1,2,3,4}
 fi
