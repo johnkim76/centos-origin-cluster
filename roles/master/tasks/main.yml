@@ -1,0 +1,2 @@
+- name: run setup_master.sh
+  shell: setup_master.sh
